@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://c3dywxs16624x"]
+
+[ext_resource type="Script" uid="uid://d07pg1sb8lt1m" path="res://Scripts/edge_detection_compositor.gd" id="1_27hph"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nyaay"]
+
+[sub_resource type="Sky" id="Sky_27hph"]
+sky_material = SubResource("ProceduralSkyMaterial_nyaay")
+
+[sub_resource type="Environment" id="Environment_caf85"]
+background_mode = 2
+sky = SubResource("Sky_27hph")
+
+[sub_resource type="CompositorEffect" id="CompositorEffect_caf85"]
+resource_local_to_scene = false
+resource_name = ""
+enabled = true
+effect_callback_type = 4
+needs_motion_vectors = false
+needs_normal_roughness = true
+script = ExtResource("1_27hph")
+metadata/_custom_type_script = "uid://d07pg1sb8lt1m"
+
+[sub_resource type="Compositor" id="Compositor_gauwx"]
+compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_caf85")])
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gauwx"]
+albedo_color = Color(0.38778636, 0.516906, 0.2744983, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_nyaay"]
+
+[node name="World" type="Node3D"]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 7
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(164, 92)
+render_target_update_mode = 4
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
+environment = SubResource("Environment_caf85")
+compositor = SubResource("Compositor_gauwx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, -2.9802322e-08, 1, 0, 0, 2.3841858e-07)
+material_override = SubResource("StandardMaterial3D_gauwx")
+mesh = SubResource("CapsuleMesh_nyaay")
+skeleton = NodePath("../../..")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.91235614, 0.40939763, 0, -0.40939766, 0.9123561, 0, 1.908205, 3.4923172)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(0.9659258, -0.22414388, 0.1294095, 0, 0.49999997, 0.86602545, -0.25881904, -0.8365163, 0.48296288, 0, 3, 0)
