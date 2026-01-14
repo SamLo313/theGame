@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://7bh5o5jlm060"]
+
+[ext_resource type="Shader" uid="uid://c2476cgljjrlu" path="res://Materials/Shaders/transparency_circle.gdshader" id="1_u3gs7"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_u3gs7")
+shader_parameter/albedo_tint = Color(0.27909186, 0.5380221, 0.65500236, 1)
+shader_parameter/player_screen_pos = Vector2(0, 0)
+shader_parameter/player_position = Vector3(0, 0, 0)
+shader_parameter/camera_forward = Vector3(0, 0, 0)
+shader_parameter/position_adjustment = Vector2(0, 0)
+shader_parameter/radius = 0.15
+shader_parameter/smoothness = 0.0
+shader_parameter/wave_count = 5.0
+shader_parameter/wave_strength = 0.02
+shader_parameter/flow_speed = 0.6

@@ -12,22 +12,25 @@ sky_material = SubResource("ProceduralSkyMaterial_nyaay")
 [sub_resource type="Environment" id="Environment_caf85"]
 background_mode = 2
 sky = SubResource("Sky_27hph")
+fog_height_density = -0.5872
+volumetric_fog_density = 0.2794
+volumetric_fog_albedo = Color(0.66245234, 0.66245234, 0.6624523, 1)
 
-[sub_resource type="CompositorEffect" id="CompositorEffect_caf85"]
+[sub_resource type="CompositorEffect" id="CompositorEffect_mtgl8"]
 resource_local_to_scene = false
 resource_name = ""
 enabled = true
 effect_callback_type = 4
 needs_motion_vectors = false
-needs_normal_roughness = true
+needs_normal_roughness = false
 script = ExtResource("1_y1xyx")
 metadata/_custom_type_script = "uid://d07pg1sb8lt1m"
 
 [sub_resource type="Compositor" id="Compositor_gauwx"]
-compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_caf85")])
+compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_mtgl8")])
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xregt"]
-albedo_color = Color(0.45452482, 0.4545241, 0.45452422, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ppahp"]
+albedo_color = Color(0.47397572, 0.47397572, 0.47397572, 1)
 
 [node name="World" type="Node3D"]
 
@@ -74,7 +77,7 @@ size = Vector3(4.8406982, 3.0020752, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, -9)
 use_collision = true
 size = Vector3(17, 6, 1)
-material = SubResource("StandardMaterial3D_xregt")
+material = SubResource("StandardMaterial3D_ppahp")
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6574779, 3.017085, -7.3756585)

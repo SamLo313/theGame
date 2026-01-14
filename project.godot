@@ -14,6 +14,10 @@ config/name="The Game"
 run/main_scene="uid://c3dywxs16624x"
 config/features=PackedStringArray("4.5", "Forward Plus")
 
+[autoload]
+
+TransparencyManager="*res://Scripts/transparencyManager.gd"
+
 [editor]
 
 version_control/plugin_name="GitPlugin"
@@ -28,6 +32,11 @@ folder_colors={
 "res://Scenes/": "orange",
 "res://Scripts/": "blue"
 }
+
+[global_group]
+
+transparent_wall=""
+player=""
 
 [input]
 

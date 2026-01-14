@@ -1,0 +1,74 @@
+[gd_scene load_steps=14 format=3 uid="uid://ddvgp8sdfq651"]
+
+[ext_resource type="Material" uid="uid://ddes0t8gpcw1b" path="res://Materials/test.tres" id="1_w0vi8"]
+[ext_resource type="PackedScene" uid="uid://0q4v35s0yxbh" path="res://Scenes/Player.tscn" id="2_lyk4u"]
+[ext_resource type="Material" uid="uid://7bh5o5jlm060" path="res://Materials/transparency.tres" id="3_wbj3j"]
+[ext_resource type="Script" uid="uid://d07pg1sb8lt1m" path="res://Scripts/edge_detection_compositor.gd" id="4_yr1hv"]
+[ext_resource type="PackedScene" uid="uid://de8ynju0a4x3j" path="res://Scenes/Enemy.tscn" id="5_lyk4u"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s3yyx"]
+
+[sub_resource type="Sky" id="Sky_27hph"]
+sky_material = SubResource("ProceduralSkyMaterial_s3yyx")
+
+[sub_resource type="Environment" id="Environment_lty8c"]
+background_mode = 2
+sky = SubResource("Sky_27hph")
+
+[sub_resource type="CompositorEffect" id="CompositorEffect_caf85"]
+resource_local_to_scene = false
+resource_name = ""
+enabled = true
+effect_callback_type = 4
+needs_motion_vectors = false
+needs_normal_roughness = true
+script = ExtResource("4_yr1hv")
+metadata/_custom_type_script = "uid://d07pg1sb8lt1m"
+
+[sub_resource type="Compositor" id="Compositor_2gnek"]
+compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_caf85")])
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_w0vi8"]
+vertices = PackedVector3Array(4.5, 0.6999998, 6.5, 4.5, 0.6999998, 5.75, 3.75, 0.6999998, 5.75, -7.5, 0.6999998, 6.5, 3, 0.6999998, -5, 3.5, 0.6999998, -5.5, -7.5, 0.6999998, -5.5, 3, 0.6999998, 5)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(6, 5, 4), PackedInt32Array(4, 7, 6), PackedInt32Array(6, 7, 3), PackedInt32Array(3, 7, 2)]
+cell_height = 0.1
+agent_radius = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_caf85"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w0vi8"]
+
+[node name="test2" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("2_lyk4u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2555113, 1.0019717, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.9659259, -0.22414388, 0.1294095, 0, 0.49999997, 0.86602545, -0.25881907, -0.8365163, 0.48296288, 0, 8.8604555, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_lty8c")
+compositor = SubResource("Compositor_2gnek")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_w0vi8")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -2.3841858e-07, 0.5)
+material_override = ExtResource("1_w0vi8")
+use_collision = true
+size = Vector3(14, 1, 14)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D" groups=["transparent_wall"]]
+transform = Transform3D(1, 0, 0, 0, 5.4073005, 0, 0, 0, 9.30108, 4.734425, 3.185827, -0.0059080124)
+material_override = ExtResource("3_wbj3j")
+mesh = SubResource("BoxMesh_caf85")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_w0vi8")
+
+[node name="Enemy" parent="." instance=ExtResource("5_lyk4u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0509951, 0.953279, -1.0678062)
