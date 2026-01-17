@@ -6,8 +6,8 @@ var camera: Camera3D
 
 func _ready() -> void:
 	await get_tree().process_frame
-	player = get_tree().current_scene.get_node_or_null("SubViewportContainer/SubViewport/Player")
-	#player = get_tree().current_scene.get_node_or_null("Player")
+	#player = get_tree().current_scene.get_node_or_null("SubViewportContainer/SubViewport/Player")
+	player = get_tree().current_scene.get_node_or_null("Player")
 	
 	if player:
 		camera = player.get_node_or_null("CameraPivot/Camera")

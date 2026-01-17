@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://ddvgp8sdfq651"]
+[gd_scene load_steps=15 format=3 uid="uid://ddvgp8sdfq651"]
 
 [ext_resource type="Material" uid="uid://ddes0t8gpcw1b" path="res://Materials/test.tres" id="1_w0vi8"]
 [ext_resource type="PackedScene" uid="uid://0q4v35s0yxbh" path="res://Scenes/Player.tscn" id="2_lyk4u"]
 [ext_resource type="Material" uid="uid://7bh5o5jlm060" path="res://Materials/transparency.tres" id="3_wbj3j"]
 [ext_resource type="Script" uid="uid://d07pg1sb8lt1m" path="res://Scripts/edge_detection_compositor.gd" id="4_yr1hv"]
 [ext_resource type="PackedScene" uid="uid://de8ynju0a4x3j" path="res://Scenes/Enemy.tscn" id="5_lyk4u"]
+[ext_resource type="PackedScene" uid="uid://creje1iiu60wy" path="res://Scenes/Npc.tscn" id="6_wbj3j"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s3yyx"]
 
@@ -75,3 +76,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0509951, 0.953279, -1.06780
 
 [node name="Enemy2" parent="." instance=ExtResource("5_lyk4u")]
 transform = Transform3D(-0.87760675, 0, -0.4793812, 0, 1, 0, 0.4793812, 0, -0.87760675, -2.2888188, 0.5001113, 4.181649)
+
+[node name="Npc" parent="." instance=ExtResource("6_wbj3j")]
+transform = Transform3D(-0.9944597, 0, -0.105118655, 0, 1, 0, 0.105118655, 0, -0.9944597, -6.8789415, 0.500112, -4.9790726)
+
+[node name="Npc2" parent="." instance=ExtResource("6_wbj3j")]
+transform = Transform3D(0.84068006, 0, -0.5415321, 0, 1, 0, 0.5415321, 0, 0.84068006, -6.7813587, 0.500112, 5.5342407)
+npc_name = "Villager2"
+dialogue_lines = Array[String](["Hello friend", "Welcome to our village.", "Be careful out there!"])
