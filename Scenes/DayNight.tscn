@@ -1,0 +1,196 @@
+[gd_scene load_steps=9 format=3 uid="uid://cmery1eqvpfdh"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ym81o"]
+
+[sub_resource type="Sky" id="Sky_ym81o"]
+sky_material = SubResource("ProceduralSkyMaterial_ym81o")
+
+[sub_resource type="Environment" id="Environment_jrkyu"]
+background_mode = 2
+background_energy_multiplier = 0.2
+sky = SubResource("Sky_ym81o")
+
+[sub_resource type="Compositor" id="Compositor_62evc"]
+
+[sub_resource type="Animation" id="Animation_jrkyu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.95475376, 0.6582702, 0.06386281)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DirectionalLight3D:light_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.07511718, 0.21979648, 0.3761827, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DirectionalLight3D:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.313]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WorldEnvironment:environment:background_energy_multiplier")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.2]
+}
+
+[sub_resource type="Animation" id="Animation_ym81o"]
+resource_name = "dayNight"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.53333336, 2.5, 4.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.86390024, 0.5754903, -0.95743185), Vector3(-0.9262658, 1.617537, -2.1284218), Vector3(-0.8549802, 2.572767, 3.0918946)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DirectionalLight3D:light_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.33333334, 0.93333334, 1.9666667, 3.2, 3.9, 4.5333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.34280375, 0.16251093, 0.32944778, 1), Color(0.881507, 0.7131701, 0.8625889, 1), Color(0.91385114, 0.8675081, 0.8455961, 1), Color(0.91385114, 0.8675081, 0.8455961, 1), Color(0.86844766, 0.66938716, 0.4590844, 1), Color(0.2369112, 0.15840983, 0.068828955, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DirectionalLight3D:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.1, 2.1666667, 2.5666666, 3, 3.9, 4.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.1, 0.487, 1.0, 1.355, 1.0, 0.652, 0.1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WorldEnvironment:environment:background_energy_multiplier")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.96666664, 0.9696574, 2.1333334, 3, 3.9, 4.4973636),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.2, 0.48, 0.48, 1.23, 1.23, 0.65, 0.2]
+}
+
+[sub_resource type="Animation" id="Animation_7bc4m"]
+resource_name = "day"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight3D:light_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.85618925, 0.8497919, 0.8534573, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DirectionalLight3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.3388476, 2.6148949, -1.3917243)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DirectionalLight3D:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WorldEnvironment:environment:background_energy_multiplier")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jrkyu"]
+_data = {
+&"RESET": SubResource("Animation_jrkyu"),
+&"day": SubResource("Animation_7bc4m"),
+&"dayNight": SubResource("Animation_ym81o")
+}
+
+[node name="DayNight" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jrkyu")
+compositor = SubResource("Compositor_62evc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_jrkyu")
+}
+autoplay = "day"
+speed_scale = 0.05
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.8213034, 0.44779024, 0.3534748, 0.03687547, 0.57663196, -0.8161716, -0.5692983, 0.68335927, 0.4570774, 0, 0, 0)
+light_color = Color(0.07511718, 0.21979648, 0.3761827, 1)
+light_energy = 0.313
+shadow_enabled = true
+shadow_blur = 0.646

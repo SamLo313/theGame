@@ -20,8 +20,8 @@ func _ready():
 	if collision_shape is CollisionShape3D:
 		collision_shape.shape.radius = detection_range
 	
-	if patrol_points.is_empty():
-		_generate_default_patrol_points()
+	#if patrol_points.is_empty():
+	#	_generate_default_patrol_points()
 
 func _on_body_entered(body):
 	if body.is_in_group("player"):

@@ -1,33 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://ddvgp8sdfq651"]
+[gd_scene load_steps=11 format=3 uid="uid://ddvgp8sdfq651"]
 
 [ext_resource type="Material" uid="uid://ddes0t8gpcw1b" path="res://Materials/test.tres" id="1_w0vi8"]
 [ext_resource type="PackedScene" uid="uid://0q4v35s0yxbh" path="res://Scenes/Player.tscn" id="2_lyk4u"]
 [ext_resource type="Material" uid="uid://7bh5o5jlm060" path="res://Materials/transparency.tres" id="3_wbj3j"]
-[ext_resource type="Script" uid="uid://d07pg1sb8lt1m" path="res://Scripts/edge_detection_compositor.gd" id="4_yr1hv"]
 [ext_resource type="PackedScene" uid="uid://de8ynju0a4x3j" path="res://Scenes/Enemy.tscn" id="5_lyk4u"]
 [ext_resource type="PackedScene" uid="uid://creje1iiu60wy" path="res://Scenes/Npc.tscn" id="6_wbj3j"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s3yyx"]
-
-[sub_resource type="Sky" id="Sky_27hph"]
-sky_material = SubResource("ProceduralSkyMaterial_s3yyx")
-
-[sub_resource type="Environment" id="Environment_lty8c"]
-background_mode = 2
-sky = SubResource("Sky_27hph")
-
-[sub_resource type="CompositorEffect" id="CompositorEffect_caf85"]
-resource_local_to_scene = false
-resource_name = ""
-enabled = true
-effect_callback_type = 4
-needs_motion_vectors = false
-needs_normal_roughness = true
-script = ExtResource("4_yr1hv")
-metadata/_custom_type_script = "uid://d07pg1sb8lt1m"
-
-[sub_resource type="Compositor" id="Compositor_2gnek"]
-compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_caf85")])
+[ext_resource type="PackedScene" uid="uid://cmery1eqvpfdh" path="res://Scenes/DayNight.tscn" id="7_x5b3x"]
+[ext_resource type="PackedScene" uid="uid://b6uqddenn6w0a" path="res://Scenes/Clouds.tscn" id="7_yr1hv"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_w0vi8"]
 vertices = PackedVector3Array(4.5, 0.6999998, 6.5, 4.5, 0.6999998, 5.75, 3.75, 0.6999998, 5.75, -7.5, 0.6999998, 6.5, 3, 0.6999998, -5, 3.5, 0.6999998, -5.5, -7.5, 0.6999998, -5.5, 3, 0.6999998, 5)
@@ -43,13 +22,6 @@ agent_radius = 1.0
 
 [node name="Player" parent="." instance=ExtResource("2_lyk4u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2555113, 1.0019717, 0)
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.9659259, -0.22414388, 0.1294095, 0, 0.49999997, 0.86602545, -0.25881907, -0.8365163, 0.48296288, 0, 8.8604555, 0)
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_lty8c")
-compositor = SubResource("Compositor_2gnek")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_w0vi8")
@@ -79,8 +51,16 @@ transform = Transform3D(-0.87760675, 0, -0.4793812, 0, 1, 0, 0.4793812, 0, -0.87
 
 [node name="Npc" parent="." instance=ExtResource("6_wbj3j")]
 transform = Transform3D(-0.9944597, 0, -0.105118655, 0, 1, 0, 0.105118655, 0, -0.9944597, -6.8789415, 0.500112, -4.9790726)
+npc_name = "Peter"
 
 [node name="Npc2" parent="." instance=ExtResource("6_wbj3j")]
 transform = Transform3D(0.84068006, 0, -0.5415321, 0, 1, 0, 0.5415321, 0, 0.84068006, -6.7813587, 0.500112, 5.5342407)
-npc_name = "Villager2"
-dialogue_lines = Array[String](["Hello friend", "Welcome to our village.", "Be careful out there!"])
+npc_name = "Sity Pat"
+dialogue_lines = Array[String](["Hello nigga", "pod hrat rust", "aj ked furt zomrem prvy"])
+
+[node name="Clouds" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_yr1hv")]
+transform = Transform3D(8.868621, 0, 0, 0, 1, 0, 0, 0, 13.531056, 6.6066236, 18.653648, 5.3159366)
+player = NodePath("../Player")
+height_offset = 20.0
+
+[node name="DayNight" parent="." instance=ExtResource("7_x5b3x")]
