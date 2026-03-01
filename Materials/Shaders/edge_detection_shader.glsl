@@ -1,5 +1,6 @@
 #[compute]
 #version 450
+// FOR THIS PROJECT THE INNER LINES MADE WITH THE SCREEN NORMAL IS NOT BEING USED, BUT THE CODE IS STILL AVAILABLE IN THE FILE
 
 layout(local_size_x = 8, local_size_y = 8, local_size_z = 1) in;
 
@@ -93,16 +94,16 @@ void main() {
 
 	
 	// Normal based Innerlines
-	float normal_difference = 0.0;
-	vec3 normal_edge_bias = vec3(1.0, 1.0, 1.0);
-	vec3 normal = NormalRoughnessCompatibility(GetNormal(uv_normalized, mask)).rgb;
+	//float normal_difference = 0.0;
+	//vec3 normal_edge_bias = vec3(1.0, 1.0, 1.0);
+	//vec3 normal = NormalRoughnessCompatibility(GetNormal(uv_normalized, mask)).rgb;
 
-	for (int i = 0; i < uv_offsets.length(); i++){
-		vec3 n_offset = NormalRoughnessCompatibility(GetNormal(uv_offsets[i], mask)).rgb;
-		normal_difference += NormalEdgeIndicator(normal_edge_bias, normal, n_offset, depth_difference);
-	}
-	normal_difference = smoothstep(0.2, 0.2, normal_difference);
-	normal_difference = clamp(normal_difference - inv_depth_difference, 0.0, 1.0);
+	//for (int i = 0; i < uv_offsets.length(); i++){
+		//vec3 n_offset = NormalRoughnessCompatibility(GetNormal(uv_offsets[i], mask)).rgb;
+		//normal_difference += NormalEdgeIndicator(normal_edge_bias, normal, n_offset, depth_difference);
+	//}
+	//normal_difference = smoothstep(0.2, 0.2, normal_difference);
+	//normal_difference = clamp(normal_difference - inv_depth_difference, 0.0, 1.0);
 
 
 	// Combine with screen render
@@ -110,11 +111,15 @@ void main() {
 	vec4 color = imageLoad(color_image, uv);
 
 	vec3 outline = vec3(depth_difference);
-	vec3 innerline = vec3(normal_difference) - outline;
-	innerline = clamp(innerline, vec3(0.0), vec3(1.0));
+	//vec3 innerline = vec3(normal_difference) - outline;
+	//innerline = clamp(innerline, vec3(0.0), vec3(1.0));
+	//float line_mask = depth_difference + normal_difference;
+	float line_mask = depth_difference;
 	
 	// Combine colors with lines
-	vec4 color_with_lines = vec4(color.rgb + (innerline * line_highlight) - (color.rgb * outline * line_shadow), 1.0);
+	//vec4 color_with_lines = vec4(color.rgb + (innerline * line_highlight) - (color.rgb * outline * line_shadow), line_mask);
+	//vec4 color_with_lines = vec4(color.rgb - (color.rgb * outline * line_shadow), line_mask);
+	vec4 color_with_lines = mix(color, color * vec4(vec3(outline), 1.0) * vec4(vec3(line_shadow), 1.0), line_mask);
 
 	imageStore(color_image, uv, color_with_lines);
 }

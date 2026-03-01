@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cmery1eqvpfdh"]
+[gd_scene format=3 uid="uid://cmery1eqvpfdh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ym81o"]
 
@@ -176,21 +176,19 @@ _data = {
 &"dayNight": SubResource("Animation_ym81o")
 }
 
-[node name="DayNight" type="Node3D"]
+[node name="DayNight" type="Node3D" unique_id=2053683091]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=423147217]
 environment = SubResource("Environment_jrkyu")
 compositor = SubResource("Compositor_62evc")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_jrkyu")
-}
-autoplay = "dayNight"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=170754809]
+libraries/ = SubResource("AnimationLibrary_jrkyu")
+autoplay = &"dayNight"
 speed_scale = 0.05
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.8213034, 0.44779012, 0.3534748, 0.03687547, 0.57663184, -0.8161716, -0.5692983, 0.6833591, 0.4570774, 0, 0, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1393373723]
+transform = Transform3D(0.8213034, 0.4477901, 0.3534748, 0.03687547, 0.5766318, -0.8161716, -0.5692983, 0.683359, 0.4570774, 0, 0, 0)
 light_color = Color(0.07511718, 0.21979648, 0.3761827, 1)
 light_energy = 0.313
 shadow_enabled = true

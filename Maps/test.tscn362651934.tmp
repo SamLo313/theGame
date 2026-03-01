@@ -20,11 +20,9 @@ volumetric_fog_albedo = Color(0.66245234, 0.66245234, 0.6624523, 1)
 resource_local_to_scene = false
 resource_name = ""
 enabled = true
-effect_callback_type = 1
-access_resolved_color = false
-access_resolved_depth = false
+effect_callback_type = 4
 needs_motion_vectors = false
-needs_normal_roughness = true
+needs_normal_roughness = false
 script = ExtResource("1_y1xyx")
 metadata/_custom_type_script = "uid://d07pg1sb8lt1m"
 

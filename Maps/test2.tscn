@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ddvgp8sdfq651"]
+[gd_scene format=3 uid="uid://ddvgp8sdfq651"]
 
 [ext_resource type="Material" uid="uid://ddes0t8gpcw1b" path="res://Materials/test.tres" id="1_w0vi8"]
 [ext_resource type="PackedScene" uid="uid://0q4v35s0yxbh" path="res://Scenes/Player.tscn" id="2_lyk4u"]
@@ -18,49 +18,49 @@ agent_radius = 1.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w0vi8"]
 
-[node name="test2" type="Node3D"]
+[node name="test2" type="Node3D" unique_id=950019270]
 
-[node name="Player" parent="." instance=ExtResource("2_lyk4u")]
+[node name="Player" parent="." unique_id=1607718014 instance=ExtResource("2_lyk4u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2555113, 1.0019717, 0)
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=24869215]
 navigation_mesh = SubResource("NavigationMesh_w0vi8")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1133804388]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -2.3841858e-07, 0.5)
 material_override = ExtResource("1_w0vi8")
 use_collision = true
 size = Vector3(14, 1, 14)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D" groups=["transparent_wall"]]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D" unique_id=1680591131 groups=["transparent_wall"]]
 transform = Transform3D(1, 0, 0, 0, 5.4073005, 0, 0, 0, 9.30108, 4.734425, 3.185827, -0.0059080124)
 material_override = ExtResource("3_wbj3j")
 mesh = SubResource("BoxMesh_caf85")
 skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D" unique_id=1361774156]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/StaticBody3D" unique_id=1793388817]
 shape = SubResource("BoxShape3D_w0vi8")
 
-[node name="Enemy" parent="." instance=ExtResource("5_lyk4u")]
+[node name="Enemy" parent="." unique_id=545356358 instance=ExtResource("5_lyk4u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0509951, 0.953279, -1.0678062)
 
-[node name="Enemy2" parent="." instance=ExtResource("5_lyk4u")]
+[node name="Enemy2" parent="." unique_id=1537460916 instance=ExtResource("5_lyk4u")]
 transform = Transform3D(-0.87760675, 0, -0.4793812, 0, 1, 0, 0.4793812, 0, -0.87760675, -2.2888188, 0.5001113, 4.181649)
 
-[node name="Npc" parent="." instance=ExtResource("6_wbj3j")]
+[node name="Npc" parent="." unique_id=176530961 instance=ExtResource("6_wbj3j")]
 transform = Transform3D(-0.9944597, 0, -0.105118655, 0, 1, 0, 0.105118655, 0, -0.9944597, -6.8789415, 0.500112, -4.9790726)
 npc_name = "Peter"
 
-[node name="Npc2" parent="." instance=ExtResource("6_wbj3j")]
+[node name="Npc2" parent="." unique_id=769682415 instance=ExtResource("6_wbj3j")]
 transform = Transform3D(0.84068006, 0, -0.5415321, 0, 1, 0, 0.5415321, 0, 0.84068006, -6.7813587, 0.500112, 5.5342407)
 npc_name = "Sity Pat"
 dialogue_lines = Array[String](["Hello nigga", "pod hrat rust", "aj ked furt zomrem prvy"])
 
-[node name="Clouds" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_yr1hv")]
+[node name="Clouds" parent="." unique_id=69295670 node_paths=PackedStringArray("player") instance=ExtResource("7_yr1hv")]
 transform = Transform3D(8.868621, 0, 0, 0, 1, 0, 0, 0, 13.531056, 6.6066236, 18.653648, 5.3159366)
 player = NodePath("../Player")
 height_offset = 20.0
 
-[node name="DayNight" parent="." instance=ExtResource("7_x5b3x")]
+[node name="DayNight" parent="." unique_id=734058841 instance=ExtResource("7_x5b3x")]
