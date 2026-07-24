@@ -15,6 +15,10 @@ func physics_update(delta: float) -> void:
 		machine.change_state("walk")
 		return
 	
+	if Input.is_action_just_pressed("left_click"):
+		machine.change_state("slash")
+		return
+	
 	player.velocity.x = move_toward(player.velocity.x, 0, 10.0 * delta)
 	player.velocity.z = move_toward(player.velocity.z, 0, 10.0 * delta)
 	

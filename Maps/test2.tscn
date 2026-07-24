@@ -3,7 +3,7 @@
 [ext_resource type="Material" uid="uid://ddes0t8gpcw1b" path="res://Materials/test.tres" id="1_w0vi8"]
 [ext_resource type="PackedScene" uid="uid://0q4v35s0yxbh" path="res://Scenes/Player.tscn" id="2_lyk4u"]
 [ext_resource type="Material" uid="uid://7bh5o5jlm060" path="res://Materials/transparency.tres" id="3_wbj3j"]
-[ext_resource type="PackedScene" uid="uid://de8ynju0a4x3j" path="res://Scenes/Enemy.tscn" id="5_lyk4u"]
+[ext_resource type="PackedScene" uid="uid://de8ynju0a4x3j" path="res://Scenes/EnemyNpc.tscn" id="5_lyk4u"]
 [ext_resource type="PackedScene" uid="uid://creje1iiu60wy" path="res://Scenes/Npc.tscn" id="6_wbj3j"]
 [ext_resource type="PackedScene" uid="uid://cmery1eqvpfdh" path="res://Scenes/DayNight.tscn" id="7_x5b3x"]
 [ext_resource type="PackedScene" uid="uid://b6uqddenn6w0a" path="res://Scenes/Clouds.tscn" id="7_yr1hv"]
@@ -46,8 +46,9 @@ shape = SubResource("BoxShape3D_w0vi8")
 [node name="Enemy" parent="." unique_id=545356358 instance=ExtResource("5_lyk4u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0509951, 0.953279, -1.0678062)
 
-[node name="Enemy2" parent="." unique_id=1537460916 instance=ExtResource("5_lyk4u")]
+[node name="Enemy2" parent="." unique_id=1537460916 node_paths=PackedStringArray("patrol_points") instance=ExtResource("5_lyk4u")]
 transform = Transform3D(-0.87760675, 0, -0.4793812, 0, 1, 0, 0.4793812, 0, -0.87760675, -2.2888188, 0.5001113, 4.181649)
+patrol_points = [null, null, null]
 
 [node name="Npc" parent="." unique_id=176530961 instance=ExtResource("6_wbj3j")]
 transform = Transform3D(-0.9944597, 0, -0.105118655, 0, 1, 0, 0.105118655, 0, -0.9944597, -6.8789415, 0.500112, -4.9790726)

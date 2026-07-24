@@ -25,7 +25,11 @@ func physics_update(delta: float) -> void:
 			machine.change_state("idle")
 			player.move_and_slide()
 			return
+			
 	else:
+		if Input.is_action_just_pressed("left_click"):
+			machine.change_state("slash")
+			return
 		var camera_basis := Basis()
 		if camera_pivot:
 			camera_basis = Basis(Vector3.UP, camera_pivot.rotation.y)
