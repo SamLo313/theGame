@@ -2,16 +2,16 @@
 
 [ext_resource type="Script" uid="uid://bjqlu6jmfgv8k" path="res://Scripts/Player.gd" id="1_52ee3"]
 [ext_resource type="Script" uid="uid://dawfhdkimy3eq" path="res://Scripts/Camera_pivot.gd" id="1_dewec"]
-[ext_resource type="Script" uid="uid://c3d75hpkije6f" path="res://Scripts/State_machine.gd" id="1_rpqav"]
-[ext_resource type="Script" uid="uid://dhwpmjj12ry8t" path="res://Scripts/Idle.gd" id="2_kyqiw"]
-[ext_resource type="Script" uid="uid://7iclc2dd37t0" path="res://Scripts/Walk.gd" id="3_gntrk"]
-[ext_resource type="Script" uid="uid://bgfjothnnuetr" path="res://Scripts/Slash.gd" id="5_5ixxa"]
-[ext_resource type="Script" uid="uid://d3xwljll7hsvx" path="res://Scripts/Dead.gd" id="7_bhhdu"]
-[ext_resource type="PackedScene" uid="uid://xkfq4d3pjal0" path="res://Scenes/Sword.tscn" id="8_bhhdu"]
+[ext_resource type="Script" uid="uid://c3d75hpkije6f" path="res://Scripts/States/State_machine.gd" id="1_rpqav"]
+[ext_resource type="Script" uid="uid://dhwpmjj12ry8t" path="res://Scripts/States/Idle.gd" id="4_w38he"]
+[ext_resource type="Script" uid="uid://7iclc2dd37t0" path="res://Scripts/States/Walk.gd" id="5_meglp"]
+[ext_resource type="Script" uid="uid://bgfjothnnuetr" path="res://Scripts/States/Slash.gd" id="6_w6cdd"]
+[ext_resource type="Script" uid="uid://d3xwljll7hsvx" path="res://Scripts/States/Dead.gd" id="7_w38he"]
+[ext_resource type="PackedScene" uid="uid://xkfq4d3pjal0" path="res://Scenes/Weapons/Sword.tscn" id="8_bhhdu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qbkls"]
 radius = 0.39648438
-height = 1.8735352
+height = 3.5186768
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_205ij"]
 resource_name = "Alpha_Body_MAT"
@@ -2278,7 +2278,7 @@ collision_mask = 5
 script = ExtResource("1_52ee3")
 
 [node name="Collision" type="CollisionShape3D" parent="." unique_id=2027314605]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9367676, 0.04047954)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0023423433, 1.7593384, 0.04047954)
 shape = SubResource("CapsuleShape3D_qbkls")
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=985961764]
@@ -2300,22 +2300,22 @@ script = ExtResource("1_rpqav")
 initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node3D" parent="StateMachine" unique_id=1141010767]
-script = ExtResource("2_kyqiw")
+script = ExtResource("4_w38he")
 
 [node name="Walk" type="Node3D" parent="StateMachine" unique_id=1065531654]
-script = ExtResource("3_gntrk")
+script = ExtResource("5_meglp")
 
 [node name="TPose" type="Node3D" parent="StateMachine" unique_id=106413346]
 
 [node name="Slash" type="Node3D" parent="StateMachine" unique_id=696134723 node_paths=PackedStringArray("hitbox")]
-script = ExtResource("5_5ixxa")
+script = ExtResource("6_w6cdd")
 hitbox = NodePath("../../Node/Skeleton3D/mixamorigRightHand/Sword/Hitbox")
 
 [node name="Dead" type="Node3D" parent="StateMachine" unique_id=656055019]
-script = ExtResource("7_bhhdu")
+script = ExtResource("7_w38he")
 
 [node name="Node" type="Node3D" parent="." unique_id=247709548]
-transform = Transform3D(0.011, 0, 0, 0, 0.011, 0, 0, 0, 0.011, 0, 0, 0)
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0, 0)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="Node" unique_id=739163907]
 bones/0/name = "mixamorigHips"
@@ -2847,7 +2847,7 @@ bones/40/bone_meta/extras = {
 },
 "preRotation": [-0.00026434283184724, 3.702652968307395e-25, -0.00092487936645733],
 "scale": [1.0, 1.0, 1.0],
-"translation": [5.833690211239047e-16, 3.6011886598408593, 1.3420342e-14]
+"translation": [5.83369021123905e-16, 3.6011886598408593, 1.3420342e-14]
 }
 }
 bones/41/name = "mixamorigLeftHandRing2_2"
@@ -2869,7 +2869,7 @@ bones/42/bone_meta/extras = {
 "eulerOrder": "ZYX",
 "inheritType": 2.0,
 "parentMatrixWorld": {
-"elements": [0.9999999998697148, -1.614219012773e-05, -6.4623484999999986e-27, 0.0, 1.614219012756e-05, 0.999999999859072, -4.61365276976e-06, 0.0, 7.447446019289436e-11, 4.61365276916e-06, 0.999999999989357, 0.0, 5.833690211239047e-16, 3.6011886598408593, 1.3420342e-14, 1.0]
+"elements": [0.9999999998697148, -1.614219012773e-05, -6.4623484999999986e-27, 0.0, 1.614219012756e-05, 0.999999999859072, -4.61365276976e-06, 0.0, 7.447446019289436e-11, 4.61365276916e-06, 0.999999999989357, 0.0, 5.83369021123905e-16, 3.6011886598408593, 1.3420342e-14, 1.0]
 },
 "scale": [1.0, 1.0000000000000002, 1.0000000000000002],
 "translation": [-7.151610674967652e-13, 3.3073120118205006, 2.0187906115678653e-13]
@@ -3411,7 +3411,7 @@ bones/84/bone_meta/extras = {
 },
 "preRotation": [0.0, 0.0, 0.00119110756656384],
 "scale": [1.0, 1.0000000000000002, 1.0],
-"translation": [-5.012842600000002e-16, 4.136650085535452, -4.0428164e-14]
+"translation": [-5.012842600000003e-16, 4.136650085535452, -4.0428164e-14]
 }
 }
 bones/85/name = "mixamorigRightHandPinky2_2"
@@ -3433,7 +3433,7 @@ bones/86/bone_meta/extras = {
 "eulerOrder": "ZYX",
 "inheritType": 2.0,
 "parentMatrixWorld": {
-"elements": [0.999999999783914, 2.078874878045e-05, 0.0, 0.0, -2.078874878045e-05, 0.999999999783914, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, -5.012842600000002e-16, 4.136650085535452, -4.0428164e-14, 1.0]
+"elements": [0.999999999783914, 2.078874878045e-05, 0.0, 0.0, -2.078874878045e-05, 0.999999999783914, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, -5.012842600000003e-16, 4.136650085535452, -4.0428164e-14, 1.0]
 },
 "preRotation": [0.0, 0.0, -0.00119501413581291],
 "scale": [0.9999999999999998, 1.0, 1.0],
@@ -3799,7 +3799,7 @@ metadata/extras = {
 "eulerOrder": "ZYX",
 "inheritType": 2.0,
 "parentMatrixWorld": {
-"elements": [0.9999999998697148, -1.614219012773e-05, -6.4623484999999986e-27, 0.0, 1.614219012756e-05, 0.999999999859072, -4.61365276976e-06, 0.0, 7.447446019289436e-11, 4.61365276916e-06, 0.999999999989357, 0.0, 5.833690211239047e-16, 3.6011886598408593, 1.3420342e-14, 1.0]
+"elements": [0.9999999998697148, -1.614219012773e-05, -6.4623484999999986e-27, 0.0, 1.614219012756e-05, 0.999999999859072, -4.61365276976e-06, 0.0, 7.447446019289436e-11, 4.61365276916e-06, 0.999999999989357, 0.0, 5.83369021123905e-16, 3.6011886598408593, 1.3420342e-14, 1.0]
 },
 "scale": [1.0, 1.0000000000000002, 1.0000000000000002],
 "translation": [-7.151610674967652e-13, 3.3073120118205006, 2.0187906115678653e-13]
@@ -3844,7 +3844,7 @@ metadata/extras = {
 "eulerOrder": "ZYX",
 "inheritType": 2.0,
 "parentMatrixWorld": {
-"elements": [0.9999998943753524, 0.00045961862858676, 4.135903062765138e-25, 0.0, -0.00045961862857445, 0.9999998943485736, 7.31833904971e-06, 0.0, 3.363644957563253e-09, -7.31833827671e-06, 0.999999999973221, 0.0, 4.385630004337317e-13, 2.5948344610517813, 1.4550224e-14, 1.0]
+"elements": [0.9999998943753524, 0.00045961862858676, 4.135903062765138e-25, 0.0, -0.00045961862857445, 0.9999998943485736, 7.31833904971e-06, 0.0, 3.3636449575632532e-09, -7.31833827671e-06, 0.999999999973221, 0.0, 4.385630004337317e-13, 2.5948344610517813, 1.4550224e-14, 1.0]
 },
 "preRotation": [-0.00039048131835687, 0.46981448205908705, -0.06589969120655734],
 "scale": [1.0000000000000009, 1.0000000000000002, 1.0000000000000004],
@@ -3985,7 +3985,7 @@ metadata/extras = {
 "eulerOrder": "ZYX",
 "inheritType": 2.0,
 "parentMatrixWorld": {
-"elements": [0.999999999783914, 2.078874878045e-05, 0.0, 0.0, -2.078874878045e-05, 0.999999999783914, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, -5.012842600000002e-16, 4.136650085535452, -4.0428164e-14, 1.0]
+"elements": [0.999999999783914, 2.078874878045e-05, 0.0, 0.0, -2.078874878045e-05, 0.999999999783914, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, -5.012842600000003e-16, 4.136650085535452, -4.0428164e-14, 1.0]
 },
 "preRotation": [0.0, 0.0, -0.00119501413581291],
 "scale": [0.9999999999999998, 1.0, 1.0],
@@ -4091,6 +4091,7 @@ libraries/ = SubResource("AnimationLibrary_bhhdu")
 autoplay = &"Tpose"
 
 [node name="Hurtbox" type="Area3D" parent="." unique_id=848687849]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.81294626, 0)
 collision_layer = 8
 collision_mask = 0
 

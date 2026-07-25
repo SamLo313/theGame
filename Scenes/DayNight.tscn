@@ -185,10 +185,10 @@ compositor = SubResource("Compositor_62evc")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=170754809]
 libraries/ = SubResource("AnimationLibrary_jrkyu")
 autoplay = &"dayNight"
-speed_scale = 0.05
+speed_scale = 0.045
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1393373723]
-transform = Transform3D(0.8213034, 0.4477901, 0.3534748, 0.03687547, 0.5766318, -0.8161716, -0.5692983, 0.683359, 0.4570774, 0, 0, 0)
+transform = Transform3D(0.8213034, 0.44779003, 0.3534748, 0.03687547, 0.5766317, -0.8161716, -0.5692983, 0.68335897, 0.4570774, 0, 0, 0)
 light_color = Color(0.07511718, 0.21979648, 0.3761827, 1)
 light_energy = 0.313
 shadow_enabled = true

@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=4 uid="uid://creje1iiu60wy"]
+[gd_scene format=4 uid="uid://de8ynju0a4x3j"]
 
-[ext_resource type="Script" uid="uid://df2vwxwnc67wx" path="res://Scripts/Npc.gd" id="1_b5x2e"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pjc62"]
-radius = 0.39648438
-height = 1.8735352
+[ext_resource type="Script" uid="uid://c3d75hpkije6f" path="res://Scripts/States/State_machine.gd" id="1_m1htj"]
+[ext_resource type="Script" uid="uid://37hly3u0d62r" path="res://Scripts/Enemy.gd" id="1_wovta"]
+[ext_resource type="Script" uid="uid://d3xwljll7hsvx" path="res://Scripts/States/Dead.gd" id="3_p3krk"]
+[ext_resource type="Script" uid="uid://032tqseqjn4c" path="res://Scripts/States/Patrol.gd" id="3_xeo28"]
+[ext_resource type="Script" uid="uid://bmadpsb7vg8qc" path="res://Scripts/States/Chase.gd" id="4_kpr8r"]
+[ext_resource type="Script" uid="uid://b2iy8bgmkcxow" path="res://Scripts/Hurtbox.gd" id="5_mkd40"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_skcqq"]
 resource_name = "Alpha_Body_MAT"
@@ -12,7 +13,7 @@ albedo_color = Color(0.30798686, 0.61579585, 0.67822284, 1)
 metallic = 0.5
 roughness = 0.5
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_pjc62"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_7fd37"]
 resource_name = "AuxScene_mesh"
 _surfaces = [{
 "aabb": AABB(-97.34263, -0.010224432, -16.051094, 194.68498, 180.47343, 36.426853),
@@ -32,7 +33,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="Skin" id="Skin_b5x2e"]
+[sub_resource type="Skin" id="Skin_m1htj"]
 resource_name = "Skin"
 bind_count = 52
 bind/0/name = &"mixamorigHips_2"
@@ -192,8 +193,8 @@ bind/51/name = &"mixamorigRightToeBase_2"
 bind/51/bone = -1
 bind/51/pose = Transform3D(-0.9997419, -0.01799696, 0.0138647305, 0.014179835, -0.017500868, 0.9997463, -0.01774975, 0.9996849, 0.017751545, -9.593628, -11.141379, -3.6524816)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c8tqv"]
-albedo_color = Color(0.14734992, 0.3974451, 0.08757646, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kpr8r"]
+albedo_color = Color(0.6032656, 0.10810644, 0.19659388, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2c6oh"]
 resource_name = "Alpha_Joints_MAT"
@@ -201,7 +202,7 @@ albedo_color = Color(0.38536474, 0.44959307, 0.4586855, 1)
 metallic = 0.5
 roughness = 0.5
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_m7bvo"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_wovta"]
 resource_name = "AuxScene_mesh2"
 _surfaces = [{
 "aabb": AABB(-94.52749, 0.7688927, -13.5924835, 189.0547, 159.07025, 27.56034),
@@ -221,7 +222,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="Skin" id="Skin_gejva"]
+[sub_resource type="Skin" id="Skin_xeo28"]
 resource_name = "Skin2"
 bind_count = 52
 bind/0/name = &"mixamorigHips"
@@ -759,7 +760,6 @@ tracks/52/keys = PackedFloat32Array(0, 1, 0.25400734, 0.03203775, 0.014762654, 0
 [sub_resource type="Animation" id="Animation_br88p"]
 resource_name = "Idle"
 length = 9.916667
-loop_mode = 1
 tracks/0/type = "position_3d"
 tracks/0/imported = true
 tracks/0/enabled = true
@@ -1891,20 +1891,38 @@ _data = {
 &"Walk": SubResource("Animation_a8hai")
 }
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_pjc62"]
-radius = 1.0
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7fd37"]
+radius = 0.39648438
+height = 3.550232
 
-[node name="Npc" type="CharacterBody3D"]
-script = ExtResource("1_b5x2e")
+[sub_resource type="SphereShape3D" id="SphereShape3D_wovta"]
+radius = 2.5590808
 
-[node name="Collision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9367676, 0.04047954)
-shape = SubResource("CapsuleShape3D_pjc62")
+[node name="EnemyNpc" type="CharacterBody3D" unique_id=630359681]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_wovta")
+detection_range = 2.0
 
-[node name="Node" type="Node3D" parent="."]
-transform = Transform3D(-0.011, 0, 9.616505e-10, 0, 0.011, 0, -9.616505e-10, 0, -0.011, 0, 0, 0)
+[node name="StateMachine" type="Node3D" parent="." unique_id=1542788963]
+script = ExtResource("1_m1htj")
+initial_state = NodePath("Patrol")
 
-[node name="Skeleton3D" type="Skeleton3D" parent="Node"]
+[node name="Dead" type="Node3D" parent="StateMachine" unique_id=1630549286]
+script = ExtResource("3_p3krk")
+
+[node name="Patrol" type="Node3D" parent="StateMachine" unique_id=4130158]
+script = ExtResource("3_xeo28")
+
+[node name="Chase" type="Node3D" parent="StateMachine" unique_id=462828666]
+script = ExtResource("4_kpr8r")
+
+[node name="Attack" type="Node3D" parent="StateMachine" unique_id=1747613906]
+
+[node name="Node" type="Node3D" parent="." unique_id=358491160]
+transform = Transform3D(-0.02, 0, 3.0199159e-09, 0, 0.02, 0, -3.0199159e-09, 0, -0.02, 0, 0, 0)
+
+[node name="Skeleton3D" type="Skeleton3D" parent="Node" unique_id=1758781630]
 bones/0/name = "mixamorigHips"
 bones/0/parent = -1
 bones/0/rest = Transform3D(0.9993781, -0.016866734, -0.030967614, 0.017443428, 0.99967766, 0.018447721, 0.030646479, -0.01897643, 0.99935013, -5.099392, 98.280754, -0.19544594)
@@ -2511,7 +2529,7 @@ bones/46/bone_meta/extras = {
 },
 "preRotation": [0.0, 0.0, 0.00119110756656384],
 "scale": [1.0, 1.0000000000000002, 1.0],
-"translation": [-5.0128426000000035e-16, 4.136650085535452, -4.0428164e-14]
+"translation": [-5.012842600000003e-16, 4.136650085535452, -4.0428164e-14]
 }
 }
 bones/47/name = "mixamorigRightHandPinky2_2"
@@ -2533,7 +2551,7 @@ bones/48/bone_meta/extras = {
 "eulerOrder": "ZYX",
 "inheritType": 2.0,
 "parentMatrixWorld": {
-"elements": [0.9995377228591174, 0.03016543315494514, 0.00379305514269089, 0.0, -0.03016537273087823, 0.9684111784067476, 0.24752745862250963, 0.0, 0.00379353565267887, -0.2475274512588161, 0.9688734555475716, 0.0, -5.0128426000000035e-16, 4.136650085535452, -4.0428164e-14, 1.0]
+"elements": [0.9995377228591174, 0.03016543315494514, 0.00379305514269089, 0.0, -0.03016537273087823, 0.9684111784067476, 0.24752745862250963, 0.0, 0.00379353565267887, -0.2475274512588161, 0.9688734555475716, 0.0, -5.012842600000003e-16, 4.136650085535452, -4.0428164e-14, 1.0]
 },
 "preRotation": [0.0, 0.0, -0.00119501413581291],
 "scale": [0.9999999999999998, 1.0, 1.0],
@@ -3254,7 +3272,7 @@ metadata/extras = {
 }
 }
 
-[node name="mixamorigHead" type="BoneAttachment3D" parent="Node/Skeleton3D"]
+[node name="mixamorigHead" type="BoneAttachment3D" parent="Node/Skeleton3D" unique_id=900526317]
 transform = Transform3D(0.9939438, -0.030963004, -0.105437346, 0.023350012, 0.99708134, -0.07268806, 0.10738024, 0.069785856, 0.99176574, 1.0702254, 158.25644, -0.16748047)
 bone_name = "mixamorigHead"
 bone_idx = 10
@@ -3271,7 +3289,7 @@ metadata/extras = {
 }
 }
 
-[node name="mixamorigHeadTop_End" type="Node3D" parent="Node/Skeleton3D/mixamorigHead"]
+[node name="mixamorigHeadTop_End" type="Node3D" parent="Node/Skeleton3D/mixamorigHead" unique_id=911084931]
 transform = Transform3D(1, 0, 0, 0, 1, -1.3877788e-17, 0, 1.3877788e-17, 1, 0.00015451595, 18.47467, 6.6363993)
 metadata/extras = {
 "transformData": {
@@ -3285,7 +3303,7 @@ metadata/extras = {
 }
 }
 
-[node name="mixamorigRightHandThumb3" type="BoneAttachment3D" parent="Node/Skeleton3D"]
+[node name="mixamorigRightHandThumb3" type="BoneAttachment3D" parent="Node/Skeleton3D" unique_id=942278719]
 transform = Transform3D(0.42829406, 0.14985985, 0.8911262, 0.24104491, -0.9693671, 0.04716645, 0.87089676, 0.19460031, -0.4512972, -25.19223, 80.906364, 14.334823)
 bone_name = "mixamorigRightHandThumb3"
 bone_idx = 24
@@ -3301,7 +3319,7 @@ metadata/extras = {
 }
 }
 
-[node name="mixamorigRightHandThumb4" type="Node3D" parent="Node/Skeleton3D/mixamorigRightHandThumb3"]
+[node name="mixamorigRightHandThumb4" type="Node3D" parent="Node/Skeleton3D/mixamorigRightHandThumb3" unique_id=1379498962]
 transform = Transform3D(0.9572132, 0.14074609, -0.25285053, -0.14544079, 0.98936695, 0.00012530912, 0.25017956, 0.03665483, 0.9675054, 1.1177533e-05, 3.459071, -2.3241859e-05)
 metadata/extras = {
 "transformData": {
@@ -3316,7 +3334,7 @@ metadata/extras = {
 }
 }
 
-[node name="mixamorigRightHandIndex3" type="BoneAttachment3D" parent="Node/Skeleton3D"]
+[node name="mixamorigRightHandIndex3" type="BoneAttachment3D" parent="Node/Skeleton3D" unique_id=1295253067]
 transform = Transform3D(0.43612432, 0.5779903, 0.68972635, 0.0037308193, -0.7676141, 0.6409012, 0.8998785, -0.27693942, -0.3369316, -28.885527, 75.6357, 15.610697)
 bone_name = "mixamorigRightHandIndex3"
 bone_idx = 30
@@ -3332,7 +3350,7 @@ metadata/extras = {
 }
 }
 
-[node name="mixamorigRightHandIndex4" type="Node3D" parent="Node/Skeleton3D/mixamorigRightHandIndex3"]
+[node name="mixamorigRightHandIndex4" type="Node3D" parent="Node/Skeleton3D/mixamorigRightHandIndex3" unique_id=1244304721]
 transform = Transform3D(0.9999062, -0.002748024, -0.013418503, 0.0027499804, 0.99999624, 0.0001273599, 0.013418102, -0.00016424857, 0.99991, -1.2771573e-06, 3.0779877, 7.899497e-16)
 metadata/extras = {
 "transformData": {
@@ -3347,7 +3365,7 @@ metadata/extras = {
 }
 }
 
-[node name="mixamorigRightHandMiddle3" type="BoneAttachment3D" parent="Node/Skeleton3D"]
+[node name="mixamorigRightHandMiddle3" type="BoneAttachment3D" parent="Node/Skeleton3D" unique_id=1417719912]
 transform = Transform3D(0.42352253, 0.5368509, 0.7296709, -0.029203597, -0.796968, 0.6033151, 0.9054144, -0.27682662, -0.32185596, -29.88993, 74.912964, 12.831489)
 bone_name = "mixamorigRightHandMiddle3"
 bone_idx = 36
@@ -3363,7 +3381,7 @@ metadata/extras = {
 }
 }
 
-[node name="mixamorigRightHandMiddle4" type="Node3D" parent="Node/Skeleton3D/mixamorigRightHandMiddle3"]
+[node name="mixamorigRightHandMiddle4" type="Node3D" parent="Node/Skeleton3D/mixamorigRightHandMiddle3" unique_id=314587010]
 transform = Transform3D(0.9999045, 0.0034172977, -0.013389897, -0.0034159166, 0.99999416, 0.00012603542, 0.013390249, -8.028462e-05, 0.99991035, 2.8549066e-05, 3.680191, -3.7050766e-14)
 metadata/extras = {
 "transformData": {
@@ -3378,7 +3396,7 @@ metadata/extras = {
 }
 }
 
-[node name="mixamorigRightHandRing3" type="BoneAttachment3D" parent="Node/Skeleton3D"]
+[node name="mixamorigRightHandRing3" type="BoneAttachment3D" parent="Node/Skeleton3D" unique_id=903360935]
 transform = Transform3D(0.42987123, 0.6089697, 0.6666081, 0.014767146, -0.7429478, 0.66918635, 0.9027693, -0.27782005, -0.32836473, -30.060303, 75.37801, 10.67762)
 bone_name = "mixamorigRightHandRing3"
 bone_idx = 42
@@ -3394,7 +3412,7 @@ metadata/extras = {
 }
 }
 
-[node name="mixamorigRightHandRing4" type="Node3D" parent="Node/Skeleton3D/mixamorigRightHandRing3"]
+[node name="mixamorigRightHandRing4" type="Node3D" parent="Node/Skeleton3D/mixamorigRightHandRing3" unique_id=1541032896]
 transform = Transform3D(0.99988395, 0.00060137105, -0.015225965, -0.0005994938, 0.9999998, 0.00012785757, 0.015226039, -0.00011871485, 0.99988407, 2.4172625e-05, 3.660118, -4.2633052e-14)
 metadata/extras = {
 "transformData": {
@@ -3409,7 +3427,7 @@ metadata/extras = {
 }
 }
 
-[node name="mixamorigRightHandPinky3" type="BoneAttachment3D" parent="Node/Skeleton3D"]
+[node name="mixamorigRightHandPinky3" type="BoneAttachment3D" parent="Node/Skeleton3D" unique_id=1962241146]
 transform = Transform3D(0.46871105, 0.6227924, 0.62644964, 0.0022477224, -0.7100122, 0.7041857, 0.8833485, -0.32865155, -0.33419043, -30.40586, 76.30715, 7.5504913)
 bone_name = "mixamorigRightHandPinky3"
 bone_idx = 48
@@ -3418,7 +3436,7 @@ metadata/extras = {
 "eulerOrder": "ZYX",
 "inheritType": 2.0,
 "parentMatrixWorld": {
-"elements": [0.9995377228591174, 0.03016543315494514, 0.00379305514269089, 0.0, -0.03016537273087823, 0.9684111784067476, 0.24752745862250963, 0.0, 0.00379353565267887, -0.2475274512588161, 0.9688734555475716, 0.0, -5.0128426000000035e-16, 4.136650085535452, -4.0428164e-14, 1.0]
+"elements": [0.9995377228591174, 0.03016543315494514, 0.00379305514269089, 0.0, -0.03016537273087823, 0.9684111784067476, 0.24752745862250963, 0.0, 0.00379353565267887, -0.2475274512588161, 0.9688734555475716, 0.0, -5.012842600000003e-16, 4.136650085535452, -4.0428164e-14, 1.0]
 },
 "preRotation": [0.0, 0.0, -0.00119501413581291],
 "scale": [0.9999999999999998, 1.0, 1.0],
@@ -3426,7 +3444,7 @@ metadata/extras = {
 }
 }
 
-[node name="mixamorigRightHandPinky4" type="Node3D" parent="Node/Skeleton3D/mixamorigRightHandPinky3"]
+[node name="mixamorigRightHandPinky4" type="Node3D" parent="Node/Skeleton3D/mixamorigRightHandPinky3" unique_id=208577329]
 transform = Transform3D(0.9998458, -0.0044106455, -0.016997388, 0.004413442, 0.9999902, 0.00012702824, 0.016996661, -0.00020202564, 0.9998555, 4.3620255e-12, 2.9238663, 9.807259e-14)
 metadata/extras = {
 "transformData": {
@@ -3440,7 +3458,7 @@ metadata/extras = {
 }
 }
 
-[node name="mixamorigLeftHandThumb3" type="BoneAttachment3D" parent="Node/Skeleton3D"]
+[node name="mixamorigLeftHandThumb3" type="BoneAttachment3D" parent="Node/Skeleton3D" unique_id=1043595674]
 transform = Transform3D(0.35068235, -0.23075902, -0.9076189, -0.12233319, -0.9721495, 0.19989899, -0.9284698, 0.040930957, -0.369145, 22.437567, 79.786026, 13.796896)
 bone_name = "mixamorigLeftHandThumb3"
 bone_idx = 62
@@ -3456,7 +3474,7 @@ metadata/extras = {
 }
 }
 
-[node name="mixamorigLeftHandThumb4" type="Node3D" parent="Node/Skeleton3D/mixamorigLeftHandThumb3"]
+[node name="mixamorigLeftHandThumb4" type="Node3D" parent="Node/Skeleton3D/mixamorigLeftHandThumb3" unique_id=411512839]
 transform = Transform3D(0.9580416, -0.14032044, 0.24993293, 0.14491718, 0.9894438, 1.0052696e-05, -0.24729599, 0.03620995, 0.96826315, -5.1284655e-06, 3.4590778, 4.0346345e-07)
 metadata/extras = {
 "transformData": {
@@ -3471,7 +3489,7 @@ metadata/extras = {
 }
 }
 
-[node name="mixamorigLeftHandMiddle3" type="BoneAttachment3D" parent="Node/Skeleton3D"]
+[node name="mixamorigLeftHandMiddle3" type="BoneAttachment3D" parent="Node/Skeleton3D" unique_id=1835530814]
 transform = Transform3D(0.61184007, -0.69252175, -0.38218495, -0.062452845, -0.52396464, 0.849447, -0.7885122, -0.49585712, -0.36383265, 25.966703, 73.19164, 11.161309)
 bone_name = "mixamorigLeftHandMiddle3"
 bone_idx = 68
@@ -3487,7 +3505,7 @@ metadata/extras = {
 }
 }
 
-[node name="mixamorigLeftHandMiddle4" type="Node3D" parent="Node/Skeleton3D/mixamorigLeftHandMiddle3"]
+[node name="mixamorigLeftHandMiddle4" type="Node3D" parent="Node/Skeleton3D/mixamorigLeftHandMiddle3" unique_id=1921188859]
 transform = Transform3D(0.9999572, 0.0013082621, 0.009158752, -0.0013082864, 0.99999917, -3.325779e-06, -0.009158748, -8.656633e-06, 0.9999581, -3.047389e-05, 3.680191, -5.584387e-14)
 metadata/extras = {
 "transformData": {
@@ -3501,7 +3519,7 @@ metadata/extras = {
 }
 }
 
-[node name="mixamorigLeftHandRing3" type="BoneAttachment3D" parent="Node/Skeleton3D"]
+[node name="mixamorigLeftHandRing3" type="BoneAttachment3D" parent="Node/Skeleton3D" unique_id=247662529]
 transform = Transform3D(0.5949407, -0.68091106, -0.42708945, -0.088348605, -0.5835372, 0.80726606, -0.7988992, -0.4425426, -0.40732765, 26.97339, 73.71406, 9.190503)
 bone_name = "mixamorigLeftHandRing3"
 bone_idx = 74
@@ -3517,7 +3535,7 @@ metadata/extras = {
 }
 }
 
-[node name="mixamorigLeftHandRing4" type="Node3D" parent="Node/Skeleton3D/mixamorigLeftHandRing3"]
+[node name="mixamorigLeftHandRing4" type="Node3D" parent="Node/Skeleton3D/mixamorigLeftHandRing3" unique_id=1872180212]
 transform = Transform3D(0.99988943, -0.0015413619, 0.014792554, 0.001541613, 0.9999988, -5.569715e-06, -0.014792528, 2.837349e-05, 0.9998906, -2.4172632e-05, 3.660118, 1.6886514e-05)
 metadata/extras = {
 "transformData": {
@@ -3531,7 +3549,7 @@ metadata/extras = {
 }
 }
 
-[node name="mixamorigLeftHandIndex3" type="BoneAttachment3D" parent="Node/Skeleton3D"]
+[node name="mixamorigLeftHandIndex3" type="BoneAttachment3D" parent="Node/Skeleton3D" unique_id=1934830130]
 transform = Transform3D(0.62361217, -0.7296905, -0.28046313, -0.062042475, -0.40383703, 0.9127246, -0.779268, -0.55178535, -0.29710948, 24.228094, 74.012, 13.340445)
 bone_name = "mixamorigLeftHandIndex3"
 bone_idx = 80
@@ -3547,7 +3565,7 @@ metadata/extras = {
 }
 }
 
-[node name="mixamorigLeftHandIndex4" type="Node3D" parent="Node/Skeleton3D/mixamorigLeftHandIndex3"]
+[node name="mixamorigLeftHandIndex4" type="Node3D" parent="Node/Skeleton3D/mixamorigLeftHandIndex3" unique_id=1569586701]
 transform = Transform3D(0.999968, -4.5550478e-05, 0.008003142, 4.5567114e-05, 1, -1.8963921e-06, -0.008003142, 2.2610113e-06, 0.999968, 5.8547226e-07, 3.0779877, 1.6270026e-14)
 metadata/extras = {
 "transformData": {
@@ -3562,7 +3580,7 @@ metadata/extras = {
 }
 }
 
-[node name="mixamorigLeftHandPinky3" type="BoneAttachment3D" parent="Node/Skeleton3D"]
+[node name="mixamorigLeftHandPinky3" type="BoneAttachment3D" parent="Node/Skeleton3D" unique_id=1987008742]
 transform = Transform3D(0.6149961, -0.7454435, -0.2570874, -0.061120026, -0.3701172, 0.926972, -0.7861579, -0.55437076, -0.27318215, 27.72261, 75.60737, 5.6464543)
 bone_name = "mixamorigLeftHandPinky3"
 bone_idx = 86
@@ -3579,7 +3597,7 @@ metadata/extras = {
 }
 }
 
-[node name="mixamorigLeftHandPinky4" type="Node3D" parent="Node/Skeleton3D/mixamorigLeftHandPinky3"]
+[node name="mixamorigLeftHandPinky4" type="Node3D" parent="Node/Skeleton3D/mixamorigLeftHandPinky3" unique_id=55397100]
 transform = Transform3D(0.9999657, 0.0011501105, 0.008199721, -0.0011501276, 0.99999934, -2.6158596e-06, -0.008199718, -6.8149566e-06, 0.9999664, -2.969839e-13, 2.9238663, -2.4052602e-15)
 metadata/extras = {
 "transformData": {
@@ -3594,7 +3612,7 @@ metadata/extras = {
 }
 }
 
-[node name="mixamorigLeftToeBase" type="BoneAttachment3D" parent="Node/Skeleton3D"]
+[node name="mixamorigLeftToeBase" type="BoneAttachment3D" parent="Node/Skeleton3D" unique_id=24983414]
 transform = Transform3D(-0.96474046, 0.26240054, 0.020533584, 0.01871675, -0.009421766, 0.99978036, 0.26253635, 0.9649129, 0.004178226, 14.590406, 3.287129, 10.83249)
 bone_name = "mixamorigLeftToeBase"
 bone_idx = 94
@@ -3611,7 +3629,7 @@ metadata/extras = {
 }
 }
 
-[node name="mixamorigLeftToe_End" type="Node3D" parent="Node/Skeleton3D/mixamorigLeftToeBase"]
+[node name="mixamorigLeftToe_End" type="Node3D" parent="Node/Skeleton3D/mixamorigLeftToeBase" unique_id=332085316]
 transform = Transform3D(1, -8.2907155e-27, -1.0787812e-17, -3.85186e-34, 1, -7.6852613e-10, 1.0787812e-17, 7.6852613e-10, 1, 1.7763568e-15, 10, 4.8907474e-09)
 metadata/extras = {
 "transformData": {
@@ -3626,7 +3644,7 @@ metadata/extras = {
 }
 }
 
-[node name="mixamorigRightToeBase" type="BoneAttachment3D" parent="Node/Skeleton3D"]
+[node name="mixamorigRightToeBase" type="BoneAttachment3D" parent="Node/Skeleton3D" unique_id=527269893]
 transform = Transform3D(-0.9260207, -0.37675485, -0.02326557, -0.017996252, -0.01750052, 0.99968505, -0.37704322, 0.9261477, 0.00942561, -22.54628, 3.2846503, 12.442535)
 bone_name = "mixamorigRightToeBase"
 bone_idx = 102
@@ -3643,7 +3661,7 @@ metadata/extras = {
 }
 }
 
-[node name="mixamorigRightToe_End" type="Node3D" parent="Node/Skeleton3D/mixamorigRightToeBase"]
+[node name="mixamorigRightToe_End" type="Node3D" parent="Node/Skeleton3D/mixamorigRightToeBase" unique_id=2032767758]
 transform = Transform3D(1, 3.4694467e-18, -3.320369e-16, -3.4694467e-18, 1, 6.219926e-10, 3.320369e-16, -6.219926e-10, 1, 3.1880578e-09, 10, 5.687534e-09)
 metadata/extras = {
 "transformData": {
@@ -3658,10 +3676,10 @@ metadata/extras = {
 }
 }
 
-[node name="Alpha_Surface" type="MeshInstance3D" parent="Node/Skeleton3D"]
-mesh = SubResource("ArrayMesh_pjc62")
-skin = SubResource("Skin_b5x2e")
-surface_material_override/0 = SubResource("StandardMaterial3D_c8tqv")
+[node name="Alpha_Surface" type="MeshInstance3D" parent="Node/Skeleton3D" unique_id=1954123275]
+mesh = SubResource("ArrayMesh_7fd37")
+skin = SubResource("Skin_m1htj")
+surface_material_override/0 = SubResource("StandardMaterial3D_kpr8r")
 metadata/extras = {
 "transformData": {
 "eulerOrder": "ZYX",
@@ -3672,9 +3690,9 @@ metadata/extras = {
 }
 }
 
-[node name="Alpha_Joints" type="MeshInstance3D" parent="Node/Skeleton3D"]
-mesh = SubResource("ArrayMesh_m7bvo")
-skin = SubResource("Skin_gejva")
+[node name="Alpha_Joints" type="MeshInstance3D" parent="Node/Skeleton3D" unique_id=670426193]
+mesh = SubResource("ArrayMesh_wovta")
+skin = SubResource("Skin_xeo28")
 metadata/extras = {
 "transformData": {
 "eulerOrder": "ZYX",
@@ -3685,14 +3703,28 @@ metadata/extras = {
 }
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_o2nr8")
-}
-autoplay = "Idle"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1985055854]
+libraries/ = SubResource("AnimationLibrary_o2nr8")
+autoplay = &"TPose"
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Collision" type="CollisionShape3D" parent="." unique_id=164174386]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.027589202, 1.7795262, 0.04047954)
+shape = SubResource("CapsuleShape3D_7fd37")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=319238810]
+
+[node name="DetectionArea" type="Area3D" parent="." unique_id=873044248]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea" unique_id=1870176656]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CylinderShape3D_pjc62")
+shape = SubResource("SphereShape3D_wovta")
+
+[node name="Hurtbox" type="Area3D" parent="." unique_id=1010576846]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("5_mkd40")
+
+[node name="Collision" type="CollisionShape3D" parent="Hurtbox" unique_id=1113519493]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7831094, 0.04047954)
+shape = SubResource("CapsuleShape3D_7fd37")

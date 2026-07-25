@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://xkfq4d3pjal0"]
 
+[ext_resource type="Script" uid="uid://ov265rq5vdvn" path="res://Scripts/Weapon.gd" id="1_l8vww"]
 [ext_resource type="Script" uid="uid://b1mwuetw5ai0x" path="res://Scripts/Hitbox.gd" id="1_suca6"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
@@ -8,7 +9,10 @@ size = Vector3(0.111083984, 0.9614258, 0.11328125)
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
 size = Vector3(0.11077881, 0.96398926, 0.10920715)
 
-[node name="Sword" type="Node3D" unique_id=541169068]
+[node name="Sword" type="Node3D" unique_id=541169068 node_paths=PackedStringArray("hitbox")]
+script = ExtResource("1_l8vww")
+damage = 15.0
+hitbox = NodePath("Hitbox")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1787816363]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.016869366, 0.4603263, 0.009122223)

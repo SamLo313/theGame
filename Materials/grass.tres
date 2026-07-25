@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cudoptcrtgl7u"]
+
+[ext_resource type="Shader" uid="uid://de4s8l7jecutp" path="res://Materials/Shaders/grass_billboard.gdshader" id="1_528a5"]
+[ext_resource type="Texture2D" uid="uid://32bpa4nk3av1" path="res://Assets/grass_round.png" id="2_528a5"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_528a5")
+shader_parameter/grass_color = Color(0.35307336, 0.53694063, 0.14809102, 1)
+shader_parameter/grass_alpha = ExtResource("2_528a5")
+shader_parameter/grass_bend_amount = 1.0
+shader_parameter/sway_back = 1.0
+shader_parameter/light_steps = 3.0
