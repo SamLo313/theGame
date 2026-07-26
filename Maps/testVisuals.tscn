@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://ddvgp8sdfq651"]
+
+[ext_resource type="PackedScene" uid="uid://0q4v35s0yxbh" path="res://Scenes/Characters/Player.tscn" id="1_a45no"]
+[ext_resource type="Material" uid="uid://ddes0t8gpcw1b" path="res://Materials/test.tres" id="2_13jt0"]
+[ext_resource type="Material" uid="uid://7bh5o5jlm060" path="res://Materials/transparency.tres" id="3_aygbi"]
+[ext_resource type="PackedScene" uid="uid://de8ynju0a4x3j" path="res://Scenes/Characters/EnemyNpc.tscn" id="4_kqchw"]
+[ext_resource type="PackedScene" uid="uid://creje1iiu60wy" path="res://Scenes/Characters/Npc.tscn" id="5_7qybg"]
+[ext_resource type="PackedScene" uid="uid://b6uqddenn6w0a" path="res://Scenes/Clouds.tscn" id="6_a8w0t"]
+[ext_resource type="PackedScene" uid="uid://cmery1eqvpfdh" path="res://Scenes/DayNight.tscn" id="7_rq1sr"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_w0vi8"]
+vertices = PackedVector3Array(3.8340368, 0.6999998, -7.5108013, 4.834037, 0.6999998, -7.5108013, 4.834037, 0.6999998, -8.260801, -9.665963, 0.6999998, -8.260801, 5.334037, 0.6999998, 9.239199, 5.334037, 0.6999998, 7.4891987, 3.8340368, 0.6999998, 7.4891987, 3.0840368, 0.6999998, 6.7391987, -9.665963, 0.6999998, 9.239199, 3.0840368, 0.6999998, -6.7608013, 5.584037, 0.6999998, -7.5108013, 6.584037, 0.6999998, -8.260801, 6.334037, 0.6999998, 6.7391987, 6.584037, 0.6999998, 9.239199, 6.334037, 0.6999998, -6.7608013)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(6, 5, 4), PackedInt32Array(6, 4, 7), PackedInt32Array(7, 4, 8), PackedInt32Array(9, 7, 3), PackedInt32Array(3, 7, 8), PackedInt32Array(3, 0, 9), PackedInt32Array(1, 2, 10), PackedInt32Array(10, 2, 11), PackedInt32Array(14, 11, 12), PackedInt32Array(12, 11, 13), PackedInt32Array(14, 10, 11), PackedInt32Array(4, 5, 13), PackedInt32Array(13, 5, 12)]
+cell_height = 0.1
+agent_radius = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_caf85"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w0vi8"]
+
+[node name="World" type="Node3D" unique_id=950019270]
+
+[node name="Player" parent="." unique_id=1607718014 instance=ExtResource("1_a45no")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2555113, 1.0019717, 0)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=24869215]
+navigation_mesh = SubResource("NavigationMesh_w0vi8")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1133804388]
+transform = Transform3D(1.3094233, 0, 0, 0, 1, 0, 0, 0, 1.3944001, -1.5, -2.3841858e-07, 0.5)
+material_override = ExtResource("2_13jt0")
+use_collision = true
+size = Vector3(14, 1, 14)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D" unique_id=1680591131 groups=["transparent_wall"]]
+transform = Transform3D(1, 0, 0, 0, 5.4073005, 0, 0, 0, 12.898603, 4.734425, 3.185827, -0.0059080124)
+material_override = ExtResource("3_aygbi")
+mesh = SubResource("BoxMesh_caf85")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D" unique_id=1361774156]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/StaticBody3D" unique_id=1793388817]
+shape = SubResource("BoxShape3D_w0vi8")
+
+[node name="Enemy" parent="." unique_id=545356358 instance=ExtResource("4_kqchw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0509951, 0.953279, -1.0678062)
+
+[node name="Enemy2" parent="." unique_id=1537460916 node_paths=PackedStringArray("patrol_points") instance=ExtResource("4_kqchw")]
+transform = Transform3D(-0.87760675, 0, -0.4793812, 0, 1, 0, 0.4793812, 0, -0.87760675, -2.2888188, 0.5001113, 4.181649)
+patrol_points = [null, null, null]
+
+[node name="Npc" parent="." unique_id=176530961 instance=ExtResource("5_7qybg")]
+transform = Transform3D(-0.9944597, 0, -0.105118655, 0, 1, 0, 0.105118655, 0, -0.9944597, -6.8789415, 0.500112, -4.9790726)
+npc_name = "Peter"
+
+[node name="Npc2" parent="." unique_id=769682415 instance=ExtResource("5_7qybg")]
+transform = Transform3D(0.84068006, 0, -0.5415321, 0, 1, 0, 0.5415321, 0, 0.84068006, -6.7813587, 0.500112, 5.5342407)
+npc_name = "Sity Pat"
+dialogue_lines = Array[String](["Hello nigga", "pod hrat rust", "aj ked furt zomrem prvy"])
+
+[node name="Clouds" parent="." unique_id=69295670 node_paths=PackedStringArray("player") instance=ExtResource("6_a8w0t")]
+transform = Transform3D(8.868621, 0, 0, 0, 1, 0, 0, 0, 13.531056, 6.6066236, 18.653648, 5.3159366)
+player = NodePath("../Player")
+height_offset = 20.0
+
+[node name="DayNight" parent="." unique_id=734058841 instance=ExtResource("7_rq1sr")]

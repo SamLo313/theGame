@@ -28,6 +28,10 @@ DialogueManager="*res://UI/dialogue_manager.tscn"
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/MarchingSquaresTerrain/plugin.cfg")
+
 [file_customization]
 
 folder_colors={
@@ -106,3 +110,34 @@ left_click={
 3d_physics/layer_5="Player_Hitbox"
 3d_physics/layer_6="Enemy_Hurtbox"
 3d_physics/layer_7="Enemy_Hitbox"
+
+[shader_globals]
+
+planar_water_height={
+"type": "float",
+"value": 0.0
+}
+planar_reflection_camera_bit={
+"type": "uint",
+"value": 524288
+}
+wind_direction={
+"type": "vec3",
+"value": Vector3(0, 0, 1)
+}
+wind_noise={
+"type": "sampler2D",
+"value": "res://Assets/Noise/wind_noise.tres"
+}
+wind_scale={
+"type": "float",
+"value": 0.025
+}
+wind_speed={
+"type": "float",
+"value": 0.075
+}
+wind_strength={
+"type": "float",
+"value": 0.4
+}
