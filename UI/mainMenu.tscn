@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://de7mpgq272u6"]
+
+[ext_resource type="Script" uid="uid://cx1jajgcvmi7c" path="res://Scripts/UiScripts/mainMenu.gd" id="1_88dob"]
+
+[node name="MainMenu" type="Control" unique_id=734335801]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_88dob")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=379506334]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=2079204493]
+layout_mode = 2
+alignment = 1
+
+[node name="Tittle" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1818959576]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "The Game"
+
+[node name="NewGameButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=846760330]
+layout_mode = 2
+text = "New Game"
+
+[node name="SettingsButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1453393885]
+layout_mode = 2
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1593313311]
+layout_mode = 2
+text = "Quit
+"

@@ -7,10 +7,9 @@ signal died
 @export_group("Stats")
 @export var max_hp: float = 100.0
 
-@export_group("Components")
-@export var state_machine: Node
-@export var hurtbox: Area3D
-@export var animation_player: AnimationPlayer
+var state_machine: Node
+var hurtbox: Area3D
+var animation_player: AnimationPlayer
 
 var current_hp: float
 

@@ -30,6 +30,7 @@ transform = Transform3D(3.2874603, 0, 0, 0, 1, 0, 0, 0, 2.4902203, 0, 0, 0)
 script = ExtResource("1_u7mgy")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=453971467]
+process_mode = 2
 transform = Transform3D(7.823248, 0, 0, 0, -2.8298416e-07, 1.0000002, 0, -6.4739227, -4.3711395e-08, 0, 0, 0)
 cast_shadow = 3
 mesh = SubResource("QuadMesh_fg0bu")

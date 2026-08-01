@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://c4aeuygtlxp73"]
+
+[ext_resource type="Script" uid="uid://cebarw7qfxtxj" path="res://Scripts/UiScripts/pauseMenu.gd" id="1_rj600"]
+
+[node name="PauseMenu" type="Control" unique_id=1617821690]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rj600")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1723428996]
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer" unique_id=1833481413]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer" unique_id=811251849]
+layout_mode = 2
+alignment = 1
+
+[node name="ResumeButton" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer" unique_id=986125253]
+layout_mode = 2
+text = "Resume"
+
+[node name="SettingsButton" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer" unique_id=1487322957]
+layout_mode = 2
+text = "Settings"
+
+[node name="QuitToMenuButton" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer" unique_id=552127211]
+layout_mode = 2
+text = "Quit to Menu"

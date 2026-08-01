@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c3dywxs16624x"]
 
 [ext_resource type="Script" uid="uid://d07pg1sb8lt1m" path="res://Scripts/edge_detection_compositor.gd" id="1_5ha6q"]
+[ext_resource type="PackedScene" uid="uid://b6uqddenn6w0a" path="res://Scenes/Clouds.tscn" id="1_f7m2y"]
 [ext_resource type="PackedScene" uid="uid://0q4v35s0yxbh" path="res://Scenes/Characters/Player.tscn" id="2_s3dud"]
 [ext_resource type="Material" uid="uid://ddes0t8gpcw1b" path="res://Materials/test.tres" id="3_f7m2y"]
 
@@ -50,15 +51,24 @@ handle_input_locally = false
 size = Vector2i(384, 216)
 render_target_update_mode = 4
 
+[node name="Clouds" parent="SubViewportContainer/SubViewport" unique_id=468843341 node_paths=PackedStringArray("player") instance=ExtResource("1_f7m2y")]
+process_mode = 2
+transform = Transform3D(14.320958, 0, 0, 0, 1, 0, 0, 0, 9.172788, 0, 13.508774, 2.566412)
+player = NodePath("../Player")
+height_offset = 20.0
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport" unique_id=424884261]
-transform = Transform3D(0.9659259, -0.22414388, 0.1294095, 0, 0.49999997, 0.86602545, -0.25881907, -0.8365163, 0.48296288, 0, 8.8604555, 0)
+transform = Transform3D(0.58286136, -0.8092263, 0.073658, 0.11016597, 0.16850823, 0.9795246, -0.805069, -0.56281257, 0.18736614, 0, 15.964, 0)
+shadow_enabled = true
+shadow_reverse_cull_face = true
+shadow_blur = 0.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport" unique_id=1379583801]
 environment = SubResource("Environment_caf85")
 compositor = SubResource("Compositor_gauwx")
 
 [node name="Player" parent="SubViewportContainer/SubViewport" unique_id=2140442837 instance=ExtResource("2_s3dud")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.133726, 0.5205659, 1.240757)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.521, 0)
 
 [node name="Walls" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1852835952]
 
