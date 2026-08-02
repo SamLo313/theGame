@@ -11,6 +11,7 @@ var current_callback: Callable
 var is_first_line = true
 
 func _ready():
+	GameState.current = GameState.State.DIALOGUE
 	dialog_panel.visible = false
 	next_button.pressed.connect(_on_next_button_pressed)
 
@@ -32,6 +33,7 @@ func display_text(npc_name: String, text: String, on_continue: Callable = Callab
 	
 
 func hide_dialog():
+	GameState.current = GameState.State.PLAYING
 	anim_player.play("dialogue_end")
 	await anim_player.animation_finished
 	

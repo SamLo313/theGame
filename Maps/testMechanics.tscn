@@ -13,9 +13,11 @@ sky_material = SubResource("ProceduralSkyMaterial_nyaay")
 [sub_resource type="Environment" id="Environment_caf85"]
 background_mode = 2
 sky = SubResource("Sky_27hph")
-fog_height_density = -0.5872
-volumetric_fog_density = 0.2794
-volumetric_fog_albedo = Color(0.66245234, 0.66245234, 0.6624523, 1)
+fog_light_color = Color(0.31209764, 0.32368693, 0.33353782, 1)
+fog_light_energy = 0.8
+fog_aerial_perspective = 0.427
+fog_height_density = -0.3902
+volumetric_fog_albedo = Color(0.5129642, 0.51284045, 0.47266752, 1)
 
 [sub_resource type="CompositorEffect" id="CompositorEffect_mtgl8"]
 resource_local_to_scene = false

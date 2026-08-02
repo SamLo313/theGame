@@ -23,6 +23,7 @@ config/features=PackedStringArray("4.7", "Forward Plus")
 TransparencyManager="res://Scripts/transparencyManager.gd"
 DialogueManager="*res://UI/dialogue_manager.tscn"
 PauseMenu="*uid://c4aeuygtlxp73"
+GameState="*uid://bu335dcq8a2g1"
 
 [editor]
 
