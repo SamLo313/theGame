@@ -15,15 +15,15 @@ seamless = true
 render_priority = 0
 shader = ExtResource("1_d7lpk")
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_u7mgy")
-shader_parameter/cloud_speed = Vector2(0.003, 0.003)
-shader_parameter/cloud_scale = 0.02
-shader_parameter/cloud_density = 0.59
-shader_parameter/cloud_softness = 0.1
-shader_parameter/shadow_strength = 0.5
-shader_parameter/shadow_levels = 4.0
-shader_parameter/enable_shadow_quantization = true
+shader_parameter/noise_frequency = 0.024000000790740002
+shader_parameter/scroll_speed = Vector2(0.185, 0.245)
+shader_parameter/cloud_pixel_size = 0.05000000074506
+shader_parameter/cloud_coverage = 0.50000002375
+shader_parameter/cloud_steps = 4.0
+shader_parameter/band_darkest = 0.45
 shader_parameter/cloud_color = Color(0.9, 0.9, 0.95, 1)
 shader_parameter/cloud_opacity = 0.85
+shader_parameter/shadow_strength = 0.7
 
 [node name="Clouds" type="Node3D" unique_id=468843341]
 transform = Transform3D(3.2874603, 0, 0, 0, 1, 0, 0, 0, 2.4902203, 0, 0, 0)
@@ -31,7 +31,7 @@ script = ExtResource("1_u7mgy")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=453971467]
 process_mode = 2
-transform = Transform3D(7.823248, 0, 0, 0, -2.8298416e-07, 1.0000002, 0, -6.4739227, -4.3711395e-08, 0, 0, 0)
+transform = Transform3D(7.8232474, 0, 0, 0, -2.8298416e-07, 1.0000002, 0, -6.4739227, -4.3711395e-08, 0, 0.33138752, 0)
 cast_shadow = 3
 mesh = SubResource("QuadMesh_fg0bu")
 surface_material_override/0 = SubResource("ShaderMaterial_u7mgy")

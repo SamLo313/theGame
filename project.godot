@@ -113,6 +113,10 @@ left_click={
 3d_physics/layer_6="Enemy_Hurtbox"
 3d_physics/layer_7="Enemy_Hitbox"
 
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+
 [shader_globals]
 
 planar_water_height={

@@ -17,7 +17,11 @@ fog_light_color = Color(0.31209764, 0.32368693, 0.33353782, 1)
 fog_light_energy = 0.8
 fog_aerial_perspective = 0.427
 fog_height_density = -0.3902
-volumetric_fog_albedo = Color(0.5129642, 0.51284045, 0.47266752, 1)
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.04
+volumetric_fog_albedo = Color(0.9283728, 0.85637456, 0.6655299, 1)
+volumetric_fog_anisotropy = 0.8
+volumetric_fog_length = 128.0
 
 [sub_resource type="CompositorEffect" id="CompositorEffect_mtgl8"]
 resource_local_to_scene = false
@@ -61,6 +65,7 @@ height_offset = 20.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport" unique_id=424884261]
 transform = Transform3D(0.58286136, -0.8092263, 0.073658, 0.11016597, 0.16850823, 0.9795246, -0.805069, -0.56281257, 0.18736614, 0, 15.964, 0)
+light_volumetric_fog_energy = 2.5
 shadow_enabled = true
 shadow_reverse_cull_face = true
 shadow_blur = 0.0

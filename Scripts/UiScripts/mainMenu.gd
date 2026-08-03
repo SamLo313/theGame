@@ -7,7 +7,7 @@ func _ready() -> void:
 
 func _on_new_game() -> void:
 	GameState.current = GameState.State.PLAYING
-	get_tree().change_scene_to_file("res://Maps/testVisuals.tscn")
+	get_tree().change_scene_to_file("res://Maps/testMechanics.tscn")
 
 func _on_quit() -> void:
 	get_tree().quit()
