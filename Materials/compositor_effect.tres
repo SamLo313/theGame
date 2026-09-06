@@ -1,0 +1,13 @@
+[gd_resource type="CompositorEffect" format=3 uid="uid://lcd3nxb88sqg"]
+
+[ext_resource type="Script" uid="uid://d07pg1sb8lt1m" path="res://Scripts/edge_detection_compositor.gd" id="1_h3ial"]
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+enabled = true
+effect_callback_type = 4
+needs_motion_vectors = false
+needs_normal_roughness = true
+script = ExtResource("1_h3ial")
+metadata/_custom_type_script = "uid://d07pg1sb8lt1m"

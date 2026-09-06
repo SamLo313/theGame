@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c3dywxs16624x"]
 
-[ext_resource type="Script" uid="uid://d07pg1sb8lt1m" path="res://Scripts/edge_detection_compositor.gd" id="1_5ha6q"]
 [ext_resource type="PackedScene" uid="uid://b6uqddenn6w0a" path="res://Scenes/Clouds.tscn" id="1_f7m2y"]
+[ext_resource type="CompositorEffect" uid="uid://lcd3nxb88sqg" path="res://Materials/compositor_effect.tres" id="2_f7m2y"]
 [ext_resource type="PackedScene" uid="uid://0q4v35s0yxbh" path="res://Scenes/Characters/Player.tscn" id="2_s3dud"]
 [ext_resource type="Material" uid="uid://ddes0t8gpcw1b" path="res://Materials/test.tres" id="3_f7m2y"]
 
@@ -23,18 +23,8 @@ volumetric_fog_albedo = Color(0.9283728, 0.85637456, 0.6655299, 1)
 volumetric_fog_anisotropy = 0.8
 volumetric_fog_length = 128.0
 
-[sub_resource type="CompositorEffect" id="CompositorEffect_mtgl8"]
-resource_local_to_scene = false
-resource_name = ""
-enabled = true
-effect_callback_type = 4
-needs_motion_vectors = false
-needs_normal_roughness = true
-script = ExtResource("1_5ha6q")
-metadata/_custom_type_script = "uid://d07pg1sb8lt1m"
-
 [sub_resource type="Compositor" id="Compositor_gauwx"]
-compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_mtgl8")])
+compositor_effects = Array[CompositorEffect]([ExtResource("2_f7m2y")])
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ppahp"]
 albedo_color = Color(0.47397572, 0.47397572, 0.47397572, 1)

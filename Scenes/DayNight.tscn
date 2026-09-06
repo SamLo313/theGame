@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://cmery1eqvpfdh"]
 
+[ext_resource type="CompositorEffect" uid="uid://lcd3nxb88sqg" path="res://Materials/compositor_effect.tres" id="1_4r13m"]
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ym81o"]
 
 [sub_resource type="Sky" id="Sky_ym81o"]
@@ -12,6 +14,7 @@ sky = SubResource("Sky_ym81o")
 glow_enabled = true
 
 [sub_resource type="Compositor" id="Compositor_62evc"]
+compositor_effects = Array[CompositorEffect]([ExtResource("1_4r13m")])
 
 [sub_resource type="Animation" id="Animation_jrkyu"]
 length = 0.001

@@ -6,7 +6,7 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_528a5")
-shader_parameter/grass_color = Color(0.35307336, 0.53694063, 0.14809102, 1)
+shader_parameter/grass_color = Color(0.38370565, 0.5310821, 0, 1)
 shader_parameter/grass_alpha = ExtResource("2_528a5")
 shader_parameter/grass_bend_amount = 1.0
 shader_parameter/sway_back = 1.0

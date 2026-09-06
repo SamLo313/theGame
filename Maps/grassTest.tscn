@@ -8,7 +8,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6qsvp"]
 render_priority = 0
 shader = ExtResource("1_k4myq")
-shader_parameter/ground_color = Color(0.30558747, 0.4382467, 0.101059966, 1)
+shader_parameter/ground_color = Color(0.38431373, 0.5294118, 0, 1)
 shader_parameter/outline_mask = 1.0
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_cv3w6"]
