@@ -31,86 +31,70 @@ albedo_color = Color(0.47397572, 0.47397572, 0.47397572, 1)
 
 [node name="World" type="Node3D" unique_id=1349667322]
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=186096000]
-texture_filter = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-stretch = true
-stretch_shrink = 3
-mouse_target = true
-
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=705638392]
-handle_input_locally = false
-size = Vector2i(384, 216)
-render_target_update_mode = 4
-
-[node name="Clouds" parent="SubViewportContainer/SubViewport" unique_id=468843341 node_paths=PackedStringArray("player") instance=ExtResource("1_f7m2y")]
+[node name="Clouds" parent="." unique_id=468843341 node_paths=PackedStringArray("player") instance=ExtResource("1_f7m2y")]
 process_mode = 2
 transform = Transform3D(14.320958, 0, 0, 0, 1, 0, 0, 0, 9.172788, 0, 13.508774, 2.566412)
 player = NodePath("../Player")
 height_offset = 20.0
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport" unique_id=424884261]
-transform = Transform3D(0.58286136, -0.8092263, 0.073658, 0.11016597, 0.16850823, 0.9795246, -0.805069, -0.56281257, 0.18736614, 0, 15.964, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=424884261]
+transform = Transform3D(0.58286136, -0.80922633, 0.07365796, 0.11016597, 0.16850822, 0.9795246, -0.805069, -0.56281245, 0.18736611, 0, 15.964, 0)
 light_volumetric_fog_energy = 2.5
 shadow_enabled = true
 shadow_reverse_cull_face = true
 shadow_blur = 0.0
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport" unique_id=1379583801]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1379583801]
 environment = SubResource("Environment_caf85")
 compositor = SubResource("Compositor_gauwx")
 
-[node name="Player" parent="SubViewportContainer/SubViewport" unique_id=2140442837 instance=ExtResource("2_s3dud")]
+[node name="Player" parent="." unique_id=2140442837 instance=ExtResource("2_s3dud")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.521, 0)
 
-[node name="Walls" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1852835952]
+[node name="Walls" type="Node3D" parent="." unique_id=1852835952]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Walls" unique_id=533312652]
+[node name="CSGBox3D" type="CSGBox3D" parent="Walls" unique_id=533312652]
 transform = Transform3D(1.2740953, 0, 0, 0, 1, 0, 0, 0, 1.2196839, 9.6321106e-05, 0.020463228, -1.5010309)
 layers = 2
 use_collision = true
 size = Vector3(17, 1, 16)
 material = ExtResource("3_f7m2y")
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Walls" unique_id=393765913]
+[node name="CSGBox3D3" type="CSGBox3D" parent="Walls" unique_id=393765913]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8.020706, 1.9867883, -6.068502)
 use_collision = true
 size = Vector3(4.8406982, 3.0020752, 1)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Walls" unique_id=1106979290]
+[node name="CSGBox3D2" type="CSGBox3D" parent="Walls" unique_id=1106979290]
 transform = Transform3D(1.2302248, 0, 0, 0, 1.2258811, 0, 0, 0, 1, 0, 3.5, -10.527224)
 use_collision = true
 size = Vector3(17, 6, 1)
 material = SubResource("StandardMaterial3D_ppahp")
 
-[node name="CSGBox3D7" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Walls" unique_id=1385614986]
+[node name="CSGBox3D7" type="CSGBox3D" parent="Walls" unique_id=1385614986]
 transform = Transform3D(1.2854668, 0, 0, 0, 1.0000002, 0, 0, 0, 1.4504831, 1.6574779, 3.017085, -7.3756585)
 use_collision = true
 size = Vector3(4, 1, 4.88916)
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Walls" unique_id=859160411]
+[node name="CSGBox3D6" type="CSGBox3D" parent="Walls" unique_id=859160411]
 transform = Transform3D(1.2425039, 0, 0, 0, 1, 0, 0, 0, 1.4012866, -2.3892765, 1.7978544, -6.953371)
 use_collision = true
 size = Vector3(4, 1, 4.88916)
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Walls" unique_id=1894522404]
+[node name="CSGBox3D5" type="CSGBox3D" parent="Walls" unique_id=1894522404]
 transform = Transform3D(1.2465401, 0, 0, 0, 1, 0, 0, 0, 1.3483099, -6.4356833, 0.84966516, -6.5310836)
 use_collision = true
 size = Vector3(4, 1, 4.88916)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Walls" unique_id=1372567264]
+[node name="CSGBox3D4" type="CSGBox3D" parent="Walls" unique_id=1372567264]
 transform = Transform3D(1.5162588, 0, 0, 0, 1, 0, 0, 0, 1.3538954, 7.132042, 3, -6.8384743)
 use_collision = true
 size = Vector3(4, 1, 4.88916)
 
-[node name="CSGPolygon3D" type="CSGPolygon3D" parent="SubViewportContainer/SubViewport/Walls" unique_id=558966562]
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Walls" unique_id=558966562]
 transform = Transform3D(-3.6986698e-08, 0, -6.25032, 0, 1, 0, 0.8461571, 0, -2.732102e-07, 4.084262, 0.42750907, -3.4300437)
 use_collision = true
 polygon = PackedVector2Array(0, 0, -0.2399149, 3.1191869, 8.977623, -0.28479147, 1, 0)
 
-[editable path="SubViewportContainer/SubViewport/Player"]
-[editable path="SubViewportContainer/SubViewport/Player/Node/Skeleton3D/mixamorigRightHand/Sword"]
+[editable path="Player"]
+[editable path="Player/Node/Skeleton3D/mixamorigRightHand/Sword"]

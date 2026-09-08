@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://b05tyyhsej8ld"]
+
+[ext_resource type="Script" uid="uid://cd07ixjt6k16x" path="res://Scripts/World.gd" id="1_axeep"]
+
+[node name="World" type="Node3D" unique_id=1083960075]
+transform = Transform3D(0.299, 0, 0, 0, 0.929, 0, 0, 0, 0.264, 0, 0, 0)
+script = ExtResource("1_axeep")
+default_map_path = "uid://ddvgp8sdfq651"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=593875791]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 3
+mouse_target = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1636068601]
+handle_input_locally = false
+size = Vector2i(384, 216)
+render_target_update_mode = 4
+
+[node name="MapContainer" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1941305275]
